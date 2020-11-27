@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Jeu de plateau</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+          <div class="col-12 text-center">           
+          <h1>Jeu de plateau</h1>
+           <p class="tour"></p>
+            </div>
+
+            <div class="colonne col-2">
+                <h2>Joueur 1</h2>
+                <ul>
+                    <li class="arme-j1"></li>
+                    <li class="points-j1"></li>
+                    <li class="vies-j1"></li>
+                </ul>
+                <button class="boutonarret btn-j1" type="button">
+                    terminé
+                </button>
+            </div>
+            <div class="col-8 m-auto">
+                <img class="perso1 joueur" id="joueur1" src="img/perso1.svg" alt="perso1">
+                <img class="perso2 joueur" id="joueur2" src="img/perso2.svg" alt="perso2">
+                <img class="pistolet10 pistolet1 arme" id="piranha" src="img/pistolet-10.svg" alt="10 PTS">
+                <img class="pistolet10 pistolet2 arme" id="shark" src="img/pistolet-violet-10.svg" alt="10 PTS">
+                <img class="pistolet20 arme" id="wave" src="img/pistolet-20.svg" alt="20 PTS">
+                <img class="pistolet50 arme" id="tsunami" src="img/pistolet-50.svg" alt="50 PTS">
+
+                <table class="map m-auto">
+                </table>
+
+            </div>
+
+            <div class="colonne col-2">
+                <h2>Joueur 2</h2>
+                <ul>
+                    <li class="arme-j2"></li>
+                    <li class="points-j2"></li>
+                    <li class="vies-j2"></li>
+                </ul>
+                <button class="boutonarret btn-j2" type="button">
+                    terminé
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/jquery.js"></script>
+    <script src="js/objets.js"></script>
+    <script src="js/carte.js"></script>
+    <script src="js/deplacements.js"></script>
+</body>
+
+</html>
