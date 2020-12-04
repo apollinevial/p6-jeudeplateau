@@ -1,6 +1,6 @@
 jQuery(document).ready(function () {
 
-    var tour = {
+    let tour = {
         joueur: joueur1,
         iteration: 3,
         iterationMax: 3
@@ -44,7 +44,7 @@ jQuery(document).ready(function () {
 
         switch (intKeyCode) {
             case 37:
-                if (canMove(joueur.position, -1, 0)) {
+                if (joueur.canMove(-1, 0)) {
                     joueur.position.x -= 1;
 
 
@@ -70,7 +70,7 @@ jQuery(document).ready(function () {
                 }
                 break;
             case 38:
-                if (canMove(joueur.position, 0, -1)) {
+                if (joueur.canMove(0, -1)) {
                     joueur.position.y -= 1;
 
 
@@ -96,7 +96,7 @@ jQuery(document).ready(function () {
                 }
                 break;
             case 39:
-                if (canMove(joueur.position, +1, 0)) {
+                if (joueur.canMove(+1, 0)) {
                     joueur.position.x += 1;
 
 
@@ -122,7 +122,7 @@ jQuery(document).ready(function () {
                 }
                 break;
             case 40:
-                if (canMove(joueur.position, 0, 1)) {
+                if (joueur.canMove(0, 1)) {
                     joueur.position.y += 1;
 
                     if (joueur.position.x == wave.position.x && joueur.position.y == wave.position.y) {
@@ -178,28 +178,7 @@ jQuery(document).ready(function () {
     }
 
 
-    function canMove(emplacementJoueur, deplacementHorizontal, deplacementVertical) {
-        var nextPositionX = emplacementJoueur.x + deplacementHorizontal;
-        var nextPositionY = emplacementJoueur.y + deplacementVertical;
-        if (
-            //Si le déplacement horizontal est inférieur à 0 et donc fait sortir le joueur de la grille
-            nextPositionX < 0 ||
-            //Ou si le déplacement horizontal est supérieur à 10
-            nextPositionX > 10 ||
-            //Ou si le déplacement vertical est inférieur à 0
-            nextPositionY < 0 ||
-            //Ou si le déplacement vertical est supérieur à 10
-            nextPositionY > 10 ||
-            //Ou si la case suivante est grise
-            $('#x' + nextPositionX + 'y' + nextPositionY).hasClass('grise') ||
-            //Ou si la case suivante contient l'autre joueur
-            $('#x' + nextPositionX + 'y' + nextPositionY).children().hasClass('joueur')
-        ) {
-            //On ne déplace pas
-            return false;
-        }
-        return true;
-    }
+
 
 
 

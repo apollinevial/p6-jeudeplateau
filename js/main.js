@@ -1,19 +1,24 @@
 $(document).ready(function () {
     
+    /*Création de la carte de jeu*/
     let map = new Map(10,10);
     map.createMap();
 
+    /*Création des pistolets*/
     let piranha = new Pistolet("compact", 10, "Piranha", "piranha");
     let shark = new Pistolet("medium", 10, "Shark", "shark");
     let wave = new Pistolet("ultra", 20, "Wave", "wave");
     let tsunami = new Pistolet("double recharge", 50, "Tsunami", "tsunami");
     
+    /*Positionnement des pistolets*/
     wave.positionArme();
     tsunami.positionArme();
 
+    /*Création des joueurs*/
     let joueur1 = new Joueur("joueur 1", "joueur1", piranha, "joueur1");
     let joueur2 = new Joueur("joueur 2", "joueur1", shark, "joueur2");
     
+    /*Positionnement des joueurs*/
     joueur1.positionPerso(joueur2);
     joueur2.positionPerso(joueur1);
     
