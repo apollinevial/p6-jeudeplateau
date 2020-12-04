@@ -1,6 +1,3 @@
-$(document).ready(function () {
-    
-    
 /*objets javascript pour les joueurs*/
 class Joueur {
         constructor(nom, identifiant, pistolet, visuel) {
@@ -14,17 +11,15 @@ class Joueur {
             this.points = 100;
             this.visuel = $('#' + visuel);
         }
-    }
-
-
+    
     /*Placer personnages*/
-    function positionPerso(joueurActif, adversaire) {
-        var a = entierAleatoire(1, 10);
-        var b = entierAleatoire(1, 10);
-        var dessus = b - 1;
-        var droite = a + 1;
-        var dessous = b + 1;
-        var gauche = a - 1;
+    positionPerso(adversaire) {
+        let a = entierAleatoire(1, 10);
+        let b = entierAleatoire(1, 10);
+        let dessus = b - 1;
+        let droite = a + 1;
+        let dessous = b + 1;
+        let gauche = a - 1;
 
         /*Si la case sélectionnée aléatoirement est grise ou contient une arme ou que les 4 cases autour contiennent l'autre personnage on rejoue la fonction*/
         if ($("#x" + a + "y" + b).hasClass("grise") ||
@@ -34,18 +29,14 @@ class Joueur {
             $("#x" + gauche + "y" + b).children().hasClass(adversaire.identifiant) ||
             $("#x" + a + "y" + dessous).children().hasClass(adversaire.identifiant) ||
             $("#x" + droite + "y" + b).children().hasClass(adversaire.identifiant)) {
-            positionPerso(joueurActif, adversaire);
+            this.positionPerso(adversaire);
         } else 
         /*Sinon on déplace l'image de l'arme 1 dans la case et on lui donne une position*/{
-            $("#x" + a + "y" + b).append(joueurActif.visuel, joueurActif.pistolet.visuel);
-            joueur1.position.x = a;
-            joueur1.position.y = b;
-            joueur1.pistolet.position.x = a;
-            joueur1.pistolet.position.y = b;
+            $("#x" + a + "y" + b).append(this.visuel, this.pistolet.visuel);
+            this.position.x = a;
+            this.position.y = b;
+            this.pistolet.position.x = a;
+            this.pistolet.position.y = b;
         }
     }
-    
-    positionPerso(joueur1, joueur2);
-    positionPerso(joueur2, joueur1);
-
-});
+    }
