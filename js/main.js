@@ -32,5 +32,45 @@ $(document).ready(function () {
     $(joueur2.pistolet.visuel).clone().appendTo('.arme-j2');
     $(".points-j2").html("Dégats arme : " +joueur2.pistolet.degat);
     $(".vies-j2").html("Nombre de points : " +joueur1.points);
+    
+    
+    let tour = {
+        joueur: joueur1,
+        iteration: 3,
+        iterationMax: 3
+    }
+    
+    /*Déplacement des joueurs avec les flèches*/
+    $(document).on('keydown', function (e) {
+        if (tour.iteration > 0) {
+            tour.iteration--;
+        } else {
+            tour.iteration = 2;
+            if (tour.joueur == joueur1) {
+                tour.joueur = joueur2;
+                $(".btn-j1").prop("disabled", true).css("background-color", "white");
+                $(".btn-j2").prop("disabled", false).css("background-color", "red");
+            } else if (tour.joueur == joueur2) {
+                tour.joueur = joueur1;
+                $(".btn-j2").prop("disabled", true).css("background-color", "white");
+                $(".btn-j1").prop("disabled", false).css("background-color", "red");
+            }
+        }
+        tour.joueur.deplacement(e);
+    });
+    
+
+    $(".boutonarret").click(function () {
+        tour.iteration = 3;
+        if (tour.joueur == joueur1) {
+            tour.joueur = joueur2;
+            $(".btn-j1").prop("disabled", true).css("background-color", "white");
+            $(".btn-j2").prop("disabled", false).css("background-color", "red");
+        } else if (tour.joueur == joueur2) {
+            tour.joueur = joueur1;
+            $(".btn-j2").prop("disabled", true).css("background-color", "white");
+            $(".btn-j1").prop("disabled", false).css("background-color", "red");
+        }
+    });
 
 });
