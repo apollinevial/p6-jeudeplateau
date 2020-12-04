@@ -10,6 +10,9 @@ $(document).ready(function () {
     let wave = new Pistolet("ultra", 20, "Wave", "wave");
     let tsunami = new Pistolet("double recharge", 50, "Tsunami", "tsunami");
     
+    var pistolets = [piranha, shark, wave, tsunami];
+    console.log("nombre de pistolets : " + pistolets.length);
+    
     /*Positionnement des pistolets*/
     wave.positionArme();
     tsunami.positionArme();

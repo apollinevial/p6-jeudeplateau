@@ -8,21 +8,21 @@ class Map {
 
     createMap() {
 
-        for (var y = 1; y <= this.numberOfLines; y++) {
+        for (let y = 1; y <= this.numberOfLines; y++) {
 
             /*On ajoute des lignes au tableau autant de fois que le nombre numberOfLines*/
-            var tr = $('<tr></tr>').appendTo('.map').addClass('ligne').attr('id', 'ligne' + y);
+            let tr = $('<tr></tr>').appendTo('.map').addClass('ligne').attr('id', 'ligne' + y);
 
             /*Pour chaque ligne On ajoute des cellules autant de fois que le nombre numberOfCells*/
-            for (var x = 1; x <= this.numberOfCells; x++) {
+            for (let x = 1; x <= this.numberOfCells; x++) {
 
-                var td = $('<td></td>').appendTo('#ligne' + y).attr('id', 'x' + x + 'y' + y).addClass('cellule');
+                let td = $('<td></td>').appendTo('#ligne' + y).attr('id', 'x' + x + 'y' + y).addClass('cellule');
             }
         }
 
 
         /*Génération cases grisées*/
-        console.log(this.numberOfGreyCells + "grises");
+        console.log("nombre de cases grises : " + this.numberOfGreyCells);
 
         var i = 1;
 
