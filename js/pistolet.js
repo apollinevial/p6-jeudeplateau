@@ -10,7 +10,7 @@ class Pistolet {
         this.nom = nom;
         this.visuel = $('#' + visuel);
     }
-    
+
     /*Placer armes*/
     positionArme() {
         let a = entierAleatoire(1, 10);
@@ -21,13 +21,17 @@ class Pistolet {
             $("#x" + a + "y" + b).children().hasClass("arme")) {
             this.positionArme();
             /*Sinon on déplace l'image de l'arme dans la case*/
-        } else 
-        /*Sinon on pose l'arme et on lui donne une position*/{
+        } else
+        /*Sinon on pose l'arme et on lui donne une position*/
+        {
             $("#x" + a + "y" + b).append(this.visuel);
             this.position.x = a;
             this.position.y = b;
             console.log(this.position);
         }
     }
-    
+
+
+
+
 }

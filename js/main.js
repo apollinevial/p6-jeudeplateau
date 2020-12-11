@@ -7,7 +7,6 @@ $(document).ready(function () {
     let tsunami = new Pistolet("double recharge", 50, "Tsunami", "tsunami");
     
     var tabPistolets = [piranha, shark, wave, tsunami];
-    console.log("nombre de pistolets : " + tabPistolets.length);
     
     /*Création des joueurs*/
     let joueur1 = new Joueur("joueur 1", "joueur1", piranha, "joueur1");
@@ -50,6 +49,20 @@ $(document).ready(function () {
             }
         }
         board.deplacement(e, tour, tabPistolets);
+        board.displayPlayers(joueur1, joueur2);
+        
+        console.log("joueur1 :");
+        console.log(joueur1.position);
+        console.log("joueur2 :");
+        console.log(joueur2.position);
+        console.log("pistolet rose :");
+        console.log(wave.position);
+        console.log("pistolet jaune : ");
+        console.log(tsunami.position);
+        console.log("position pistolet violet : ");
+        console.log(shark.position);
+        console.log("position pistolet orange : ");
+        console.log(piranha.position);
     });
     
 
