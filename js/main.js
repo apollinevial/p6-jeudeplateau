@@ -51,18 +51,12 @@ $(document).ready(function () {
         board.deplacement(e, tour, tabPistolets);
         board.displayPlayers(joueur1, joueur2);
         
-        console.log("joueur1 :");
-        console.log(joueur1.position);
-        console.log("joueur2 :");
-        console.log(joueur2.position);
-        console.log("pistolet rose :");
-        console.log(wave.position);
-        console.log("pistolet jaune : ");
-        console.log(tsunami.position);
-        console.log("position pistolet violet : ");
-        console.log(shark.position);
-        console.log("position pistolet orange : ");
-        console.log(piranha.position);
+        console.log("joueur1 :" + JSON.stringify(joueur1.position));
+        console.log("joueur2 :" + JSON.stringify(joueur2.position));
+        console.log("pistolet rose :" + JSON.stringify(wave.position));
+        console.log("pistolet jaune : " + JSON.stringify(tsunami.position));
+        console.log("position pistolet violet : " + JSON.stringify(shark.position));
+        console.log("position pistolet orange : " + JSON.stringify(piranha.position));
     });
     
 
