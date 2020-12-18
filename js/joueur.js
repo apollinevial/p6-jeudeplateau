@@ -67,23 +67,42 @@ class Joueur {
         return true;
     }
 
-    
+    verifPosition(adversaire) {
+        if (this.position.x == adversaire.position.x - 1 && this.position.y == adversaire.position.y ||
+            this.position.x == adversaire.position.x && this.position.y == adversaire.position.y - 1 ||
+            this.position.x == adversaire.position.x + 1 && this.position.y == adversaire.position.y ||
+            this.position.x == adversaire.position.x && this.position.y == adversaire.position.y + 1) {
+
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+    afficherBoutons() {
+
+        $('<button>Attaquer</button>').appendTo('.boutons-combat-j' + this.numero).addClass('attaque');
+        $('<button>Défendre</button>').appendTo('.boutons-combat-j' + this.numero).addClass('defense');
+    }
+
+
     display() {
 
-            /*Affichage des joueurs sur les côtés de l'écran*/
-            $(".visuel-arme-j" + this.numero).empty();
-            $(this.visuel).clone().appendTo('.visuel-arme-j' + this.numero);
-            $(this.pistolet.visuel).clone().appendTo('.visuel-arme-j' + this.numero);
-            $(".nom-arme-j" + + this.numero).html("Nom arme : " + this.pistolet.nom);
-            $(".degats-arme-j" + this.numero).html("Dégats arme : " + this.pistolet.degat);
-            $(".points-j" + this.numero).html("Nombre de points : " + this.points);
+        /*Affichage des joueurs sur les côtés de l'écran*/
+        $(".visuel-arme-j" + this.numero).empty();
+        $(this.visuel).clone().appendTo('.visuel-arme-j' + this.numero);
+        $(this.pistolet.visuel).clone().appendTo('.visuel-arme-j' + this.numero);
+        $(".nom-arme-j" + +this.numero).html("Nom arme : " + this.pistolet.nom);
+        $(".degats-arme-j" + this.numero).html("Dégats arme : " + this.pistolet.degat);
+        $(".points-j" + this.numero).html("Nombre de points : " + this.points);
 
     }
 
 
     /*Method pour déplacer la joueur et son arme*/
     move(tour, tabPistolets, deplacementHorizontal, deplacementVertical) {
-        
+
         if (this.canMove(deplacementHorizontal, deplacementVertical)) {
 
             /*Changement position joueur*/
@@ -104,9 +123,25 @@ class Joueur {
                     this.pistolet = tabPistolet;
 
                     this.display();
-        
+
                     break;
                 }
+            }
+
+            if (this.verifPosition(tour.adversaire)) {
+                setTimeout(() => {
+                    alert("Combattez");
+                    console.log(this);
+                }, 800);
+                tour.combat == true;
+                this.afficherBoutons()
+                tour.adversaire.afficherBoutons()
+
+                $(".boutons-combat-j" + this.numero + " .attaque").click(() => {
+                    tour.adversaire.points -= this.pistolet.degat;
+                    tour.adversaire.display();
+                });
+
             }
 
 
