@@ -66,48 +66,48 @@ class Joueur {
         }
         return true;
     }
-    
 
-    Combattre(tour) {
-        if (tour.joueur.position.x == tour.adversaire.position.x-1 && tour.joueur.position.y == tour.adversaire.position.y || 
-            tour.joueur.position.x == tour.adversaire.position.x && tour.joueur.position.y == tour.adversaire.position.y-1 ||
-            tour.joueur.position.x == tour.adversaire.position.x+1 && tour.joueur.position.y == tour.adversaire.position.y ||
-            tour.joueur.position.x == tour.adversaire.position.x && tour.joueur.position.y == tour.adversaire.position.y+1) {
-            alert("Combattez");
-            
-        }
+    
+    display() {
+
+            /*Affichage des joueurs sur les côtés de l'écran*/
+            $(".visuel-arme-j" + this.numero).empty();
+            $(this.visuel).clone().appendTo('.visuel-arme-j' + this.numero);
+            $(this.pistolet.visuel).clone().appendTo('.visuel-arme-j' + this.numero);
+            $(".nom-arme-j" + + this.numero).html("Nom arme : " + this.pistolet.nom);
+            $(".degats-arme-j" + this.numero).html("Dégats arme : " + this.pistolet.degat);
+            $(".points-j" + this.numero).html("Nombre de points : " + this.points);
+
     }
 
 
     /*Method pour déplacer la joueur et son arme*/
-    Move(tour, tabPistolets, deplacementHorizontal, deplacementVertical) {
+    move(tour, tabPistolets, deplacementHorizontal, deplacementVertical) {
         
-        if (tour.joueur.canMove(deplacementHorizontal, deplacementVertical)) {
+        if (this.canMove(deplacementHorizontal, deplacementVertical)) {
 
             /*Changement position joueur*/
-            tour.joueur.position.x += deplacementHorizontal;
-            tour.joueur.position.y += deplacementVertical;
+            this.position.x += deplacementHorizontal;
+            this.position.y += deplacementVertical;
 
             /*Changement position pistolet*/
-            tour.joueur.pistolet.position.x += deplacementHorizontal;
-            tour.joueur.pistolet.position.y += deplacementVertical;
+            this.pistolet.position.x += deplacementHorizontal;
+            this.pistolet.position.y += deplacementVertical;
 
             /*Déplacement des visuels*/
-            $(tour.joueur.visuel).appendTo("#x" + tour.joueur.position.x + "y" + tour.joueur.position.y);
-            $(tour.joueur.pistolet.visuel).appendTo("#x" + tour.joueur.position.x + "y" + tour.joueur.position.y);
+            $(this.visuel).appendTo("#x" + this.position.x + "y" + this.position.y);
+            $(this.pistolet.visuel).appendTo("#x" + this.position.x + "y" + this.position.y);
 
             /*Si une arme est présente dans la nouvelle case on procède à l'échange*/
             for (const tabPistolet of tabPistolets) {
-                if (tour.joueur.position.x == tabPistolet.position.x && tour.joueur.position.y == tabPistolet.position.y && tabPistolet != tour.joueur.pistolet) {
-                    tour.joueur.pistolet = tabPistolet;
-                    /*board.displayPlayers(joueur1, joueur2);*/
+                if (this.position.x == tabPistolet.position.x && this.position.y == tabPistolet.position.y && tabPistolet != this.pistolet) {
+                    this.pistolet = tabPistolet;
+
+                    this.display();
         
                     break;
                 }
             }
-
-            tour.joueur.combattre();
-            
 
 
         } else {

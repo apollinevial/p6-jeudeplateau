@@ -56,13 +56,7 @@ class Board {
 
         for (const tabJoueur of tabJoueurs) {
 
-            /*Affichage des joueurs sur les côtés de l'écran*/
-            $(".visuel-arme-j" + tabJoueur.numero).empty();
-            $(tabJoueur.visuel).clone().appendTo('.visuel-arme-j' + tabJoueur.numero);
-            $(tabJoueur.pistolet.visuel).clone().appendTo('.visuel-arme-j' + tabJoueur.numero);
-            $(".nom-arme-j" + + tabJoueur.numero).html("Nom arme : " + tabJoueur.pistolet.nom);
-            $(".degats-arme-j" + tabJoueur.numero).html("Dégats arme : " + tabJoueur.pistolet.degat);
-            $(".points-j" + tabJoueur.numero).html("Nombre de points : " + tabJoueur.points);
+            tabJoueur.display();
         }
 
     }
@@ -75,28 +69,23 @@ class Board {
         switch (intKeyCode) {
             case 37:
 
-                tour.joueur.Move(tour, tabPistolets, -1, 0);
+                tour.joueur.move(tour, tabPistolets, -1, 0);
                 break;
             case 38:
 
-                tour.joueur.Move(tour, tabPistolets, 0, -1);
+                tour.joueur.move(tour, tabPistolets, 0, -1);
                 break;
             case 39:
 
-                tour.joueur.Move(tour, tabPistolets, 1, 0);
+                tour.joueur.move(tour, tabPistolets, 1, 0);
                 break;
             case 40:
 
-                tour.joueur.Move(tour, tabPistolets, 0, 1);
+                tour.joueur.move(tour, tabPistolets, 0, 1);
                 break;
         }
 
     }
-    
-    
-    /*Combat*/
-    
-
 
 
 }
