@@ -77,84 +77,20 @@ class Board {
 
         switch (intKeyCode) {
             case 37:
-                if (tour.joueur.canMove(-1, 0)) {
-                    
-                    tour.joueur.position.x -= 1;
-                    tour.joueur.pistolet.position.x -= 1;
-                    $(tour.joueur.visuel).appendTo("#x" + tour.joueur.position.x + "y" + tour.joueur.position.y);
-                    $(tour.joueur.pistolet.visuel).appendTo("#x" + tour.joueur.position.x + "y" + tour.joueur.position.y);
-         
-                    for (const tabPistolet of tabPistolets) {
-                        if (tour.joueur.position.x == tabPistolet.position.x && tour.joueur.position.y == tabPistolet.position.y && tabPistolet != tour.joueur.pistolet)  {
-                            tour.joueur.pistolet = tabPistolet;
-                        }
-                    }
 
-                } else {
-                    tour.iteration++;
-                    alert("Cette case est inaccessible");
-                }
-
+                tour.joueur.Move(tour, tabPistolets, -1, 0);
                 break;
             case 38:
-                if (tour.joueur.canMove(0, -1)) {
 
-                    tour.joueur.position.y -= 1;
-                    tour.joueur.pistolet.position.y -= 1;
-                    $(tour.joueur.visuel).appendTo("#x" + tour.joueur.position.x + "y" + tour.joueur.position.y);
-                    $(tour.joueur.pistolet.visuel).appendTo("#x" + tour.joueur.position.x + "y" + tour.joueur.position.y);
-
-                    for (const tabPistolet of tabPistolets) {
-                        if (tour.joueur.position.x == tabPistolet.position.x && tour.joueur.position.y == tabPistolet.position.y && tabPistolet != tour.joueur.pistolet) {
-                            tour.joueur.pistolet = tabPistolet;
-                        }
-                    }
-
-                } else {
-                    tour.iteration++;
-                    alert("Cette case est inaccessible");
-                }
-
+                tour.joueur.Move(tour, tabPistolets, 0, -1);
                 break;
             case 39:
-                if (tour.joueur.canMove(+1, 0)) {
 
-                    tour.joueur.position.x += 1;
-                    tour.joueur.pistolet.position.x += 1;
-                    $(tour.joueur.visuel).appendTo("#x" + tour.joueur.position.x + "y" + tour.joueur.position.y);
-                    $(tour.joueur.pistolet.visuel).appendTo("#x" + tour.joueur.position.x + "y" + tour.joueur.position.y);
-
-                    for (const tabPistolet of tabPistolets) {
-                        if (tour.joueur.position.x == tabPistolet.position.x && tour.joueur.position.y == tabPistolet.position.y && tabPistolet != tour.joueur.pistolet) {
-                            tour.joueur.pistolet = tabPistolet;
-                        }
-                    }
-
-                } else {
-                    tour.iteration++;
-                    alert("Cette case est inaccessible");
-                }
-
+                tour.joueur.Move(tour, tabPistolets, +1, 0);
                 break;
             case 40:
-                if (tour.joueur.canMove(0, 1)) {
 
-                    tour.joueur.position.y += 1;
-                    tour.joueur.pistolet.position.y += 1;
-                    $(tour.joueur.visuel).appendTo("#x" + tour.joueur.position.x + "y" + tour.joueur.position.y);
-                    $(tour.joueur.pistolet.visuel).appendTo("#x" + tour.joueur.position.x + "y" + tour.joueur.position.y);
-
-                    for (const tabPistolet of tabPistolets) {
-                        if (tour.joueur.position.x == tabPistolet.position.x && tour.joueur.position.y == tabPistolet.position.y && tabPistolet != tour.joueur.pistolet) {
-                            tour.joueur.pistolet = tabPistolet;
-                        }
-                    }
-
-                } else {
-                    tour.iteration++;
-                    alert("Cette case est inaccessible");
-                }
-
+                tour.joueur.Move(tour, tabPistolets, 0, +1);
                 break;
         }
 

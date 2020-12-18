@@ -65,4 +65,37 @@ class Joueur {
         }
         return true;
     }
+
+
+    /*Method pour déplacer la joueur et son arme*/
+    Move(tour, tabPistolets, deplacementHorizontal, deplacementVertical) {
+        
+        if (tour.joueur.canMove(deplacementHorizontal, deplacementVertical)) {
+
+            /*Changement position joueur*/
+            tour.joueur.position.x += deplacementHorizontal;
+            tour.joueur.position.y += deplacementVertical;
+
+            /*Changement position pistolet*/
+            tour.joueur.pistolet.position.x += deplacementHorizontal;
+            tour.joueur.pistolet.position.x += deplacementVertical;
+
+            /*Déplacement des visuels*/
+            $(tour.joueur.visuel).appendTo("#x" + tour.joueur.position.x + "y" + tour.joueur.position.y);
+            $(tour.joueur.pistolet.visuel).appendTo("#x" + tour.joueur.position.x + "y" + tour.joueur.position.y);
+
+            /*Si une arme est présente dans la nouvelle case on procède à l'échange*/
+            for (const tabPistolet of tabPistolets) {
+                if (tour.joueur.position.x == tabPistolet.position.x && tour.joueur.position.y == tabPistolet.position.y && tabPistolet != tour.joueur.pistolet) {
+                    tour.joueur.pistolet = tabPistolet;
+                    break;
+                }
+            }
+
+        } else {
+            tour.iteration++;
+            alert("Cette case est inaccessible");
+        }
+
+    }
 }
