@@ -66,6 +66,17 @@ class Joueur {
         }
         return true;
     }
+    
+
+    Combattre(tour) {
+        if (tour.joueur.position.x == tour.adversaire.position.x-1 && tour.joueur.position.y == tour.adversaire.position.y || 
+            tour.joueur.position.x == tour.adversaire.position.x && tour.joueur.position.y == tour.adversaire.position.y-1 ||
+            tour.joueur.position.x == tour.adversaire.position.x+1 && tour.joueur.position.y == tour.adversaire.position.y ||
+            tour.joueur.position.x == tour.adversaire.position.x && tour.joueur.position.y == tour.adversaire.position.y+1) {
+            alert("Combattez");
+            
+        }
+    }
 
 
     /*Method pour déplacer la joueur et son arme*/
@@ -94,6 +105,10 @@ class Joueur {
                     break;
                 }
             }
+
+            tour.joueur.combattre();
+            
+
 
         } else {
             tour.iteration++;

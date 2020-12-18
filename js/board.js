@@ -65,7 +65,6 @@ class Board {
             $(".points-j" + tabJoueur.numero).html("Nombre de points : " + tabJoueur.points);
         }
 
-
     }
 
     /*Method déplacer joueurs*/
@@ -93,6 +92,11 @@ class Board {
         }
 
     }
+    
+    
+    /*Combat*/
+    
+
 
 
 }

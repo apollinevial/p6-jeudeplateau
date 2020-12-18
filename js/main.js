@@ -38,18 +38,18 @@ $(document).ready(function () {
     $(document).on('keydown', function (e) {
         if (tour.iteration > 0) {
             if (tour.iteration == 3) {
-                $(".tour").html("Tour : 1");
+                $(".tour").html("Nombre de déplacements : 1");
             }
             if (tour.iteration == 2) {
-                $(".tour").html("Tour : 2");
+                $(".tour").html("Nombre de déplacements : 2");
             }
             if (tour.iteration == 1) {
-                $(".tour").html("Tour : 3");
+                $(".tour").html("Nombre de déplacements : 3");
             }
             tour.iteration--;
         } else {
             if (tour.iteration == 0) {
-                $(".tour").html("Tour : 1");
+                $(".tour").html("Nombre de déplacements : 1");
             }
             tour.iteration = 2;
             if (tour.joueur == joueur1) {
@@ -74,7 +74,7 @@ $(document).ready(function () {
         console.log("pistolet orange : " + JSON.stringify(piranha.position));
     });
 
-
+    
     $(".boutonarret").click(function () {
         tour.iteration = 3;
         if (tour.joueur == joueur1) {
