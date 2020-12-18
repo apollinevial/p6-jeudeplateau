@@ -11,10 +11,12 @@ $(document).ready(function () {
     /*Création des joueurs*/
     let joueur1 = new Joueur("joueur 1", "joueur1", "1", piranha, "joueur1");
     let joueur2 = new Joueur("joueur 2", "joueur1", "2", shark, "joueur2");
+    
+    var tabJoueurs = [joueur1, joueur2];
 
     /*Création de la carte de jeu*/
     let board = new Board(10, 10);
-    board.displayPlayers(joueur1, joueur2)
+    board.displayPlayers(tabJoueurs)
 
     /*Positionnement des pistolets*/
     wave.positionArme();
@@ -62,7 +64,7 @@ $(document).ready(function () {
         $(".partie-j" + tour.joueur.numero).removeClass("joueur-attente").addClass("joueur-actif");
         $(".partie-j" + tour.adversaire.numero).removeClass("joueur-actif").addClass("joueur-attente");
         board.deplacement(e, tour, tabPistolets);
-        board.displayPlayers(joueur1, joueur2);
+       /* board.displayPlayers(joueur1, joueur2);*/
 
         console.log("joueur1 : " + JSON.stringify(joueur1.position));
         console.log("joueur2 : " + JSON.stringify(joueur2.position));

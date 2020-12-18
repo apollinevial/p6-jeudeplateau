@@ -89,6 +89,8 @@ class Joueur {
             for (const tabPistolet of tabPistolets) {
                 if (tour.joueur.position.x == tabPistolet.position.x && tour.joueur.position.y == tabPistolet.position.y && tabPistolet != tour.joueur.pistolet) {
                     tour.joueur.pistolet = tabPistolet;
+                    /*board.displayPlayers(joueur1, joueur2);*/
+        
                     break;
                 }
             }

@@ -52,21 +52,19 @@ class Board {
     }
 
 
-    displayPlayers(joueur1, joueur2) {
+    displayPlayers(tabJoueurs) {
 
-        /*Affichage des joueurs sur les côtés de l'écran*/
-        $(".visuel-arme-j1").empty();
-        $(joueur1.visuel).clone().appendTo('.visuel-arme-j1');
-        $(joueur1.pistolet.visuel).clone().appendTo('.visuel-arme-j1');
-        $(".nom-arme-j1").html("Nom arme : " + joueur1.pistolet.nom);
-        $(".degats-arme-j1").html("Dégats arme : " + joueur1.pistolet.degat);
-        $(".points-j1").html("Nombre de points : " + joueur1.points);
-        $(".visuel-arme-j2").empty();
-        $(joueur2.visuel).clone().appendTo('.visuel-arme-j2');
-        $(joueur2.pistolet.visuel).clone().appendTo('.visuel-arme-j2');
-        $(".nom-arme-j2").html("Nom arme : " + joueur2.pistolet.nom);
-        $(".degats-arme-j2").html("Dégats arme : " + joueur2.pistolet.degat);
-        $(".points-j2").html("Nombre de points : " + joueur2.points);
+        for (const tabJoueur of tabJoueurs) {
+
+            /*Affichage des joueurs sur les côtés de l'écran*/
+            $(".visuel-arme-j" + tabJoueur.numero).empty();
+            $(tabJoueur.visuel).clone().appendTo('.visuel-arme-j' + tabJoueur.numero);
+            $(tabJoueur.pistolet.visuel).clone().appendTo('.visuel-arme-j' + tabJoueur.numero);
+            $(".nom-arme-j" + + tabJoueur.numero).html("Nom arme : " + tabJoueur.pistolet.nom);
+            $(".degats-arme-j" + tabJoueur.numero).html("Dégats arme : " + tabJoueur.pistolet.degat);
+            $(".points-j" + tabJoueur.numero).html("Nombre de points : " + tabJoueur.points);
+        }
+
 
     }
 
