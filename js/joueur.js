@@ -1,8 +1,9 @@
 /*objets javascript pour les joueurs*/
 class Joueur {
-    constructor(nom, identifiant, pistolet, visuel) {
+    constructor(nom, identifiant, numero, pistolet, visuel) {
         this.nom = nom;
         this.identifiant = identifiant;
+        this.numero = numero;
         this.pistolet = pistolet;
         this.position = {
             x: null,
@@ -78,7 +79,7 @@ class Joueur {
 
             /*Changement position pistolet*/
             tour.joueur.pistolet.position.x += deplacementHorizontal;
-            tour.joueur.pistolet.position.x += deplacementVertical;
+            tour.joueur.pistolet.position.y += deplacementVertical;
 
             /*Déplacement des visuels*/
             $(tour.joueur.visuel).appendTo("#x" + tour.joueur.position.x + "y" + tour.joueur.position.y);

@@ -33,4 +33,16 @@ img {
     width: 60px;
 }
 
+.joueur-actif {
+    border: 2px solid #EA524E;
+}
+
+.joueur-actif button {
+    background-color: #EA524E;
+}
+
+.joueur-attente button {
+    background-color: white;
+}
+
 

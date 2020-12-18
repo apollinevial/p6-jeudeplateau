@@ -86,11 +86,11 @@ class Board {
                 break;
             case 39:
 
-                tour.joueur.Move(tour, tabPistolets, +1, 0);
+                tour.joueur.Move(tour, tabPistolets, 1, 0);
                 break;
             case 40:
 
-                tour.joueur.Move(tour, tabPistolets, 0, +1);
+                tour.joueur.Move(tour, tabPistolets, 0, 1);
                 break;
         }
 
