@@ -79,5 +79,6 @@ $(document).ready(function () {
             tour.adversaire = joueur2;
         }
     });
+    
 
 });

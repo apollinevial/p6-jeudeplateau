@@ -141,6 +141,10 @@ class Joueur {
                     tour.adversaire.points -= this.pistolet.degat;
                     tour.adversaire.display();
                 });
+                
+                $(".boutons-combat-j" + this.numero + " .defense").click(() => {
+                    tour.adversaire.pistolet.degat / 2;
+                });
 
             }
 
