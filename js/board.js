@@ -59,7 +59,8 @@ class Board {
         $('<p>Nombre de déplacements : </p>').appendTo('.col-12').addClass('tour');
 
         for (const tabJoueur of tabJoueurs) {
-
+            
+            $(`<h2>${tabJoueur.nom}</h2>`).appendTo('.partie-j' + tabJoueur.numero);
             $('<ul></ul>').appendTo('.partie-j' + tabJoueur.numero).addClass('liste-j' + tabJoueur.numero);
             $('<li></li>').appendTo('.liste-j' + tabJoueur.numero).addClass('visuel-arme-j' + tabJoueur.numero);
             $('<li></li>').appendTo('.liste-j' + tabJoueur.numero).addClass('nom-arme-j' + tabJoueur.numero);

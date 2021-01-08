@@ -1,16 +1,16 @@
 $(document).ready(function () {
 
     /*Création des pistolets*/
-    let piranha = new Pistolet("compact", 10, "Piranha", "piranha");
-    let shark = new Pistolet("medium", 10, "Shark", "shark");
-    let wave = new Pistolet("ultra", 20, "Wave", "wave");
-    let tsunami = new Pistolet("double recharge", 50, "Tsunami", "tsunami");
+    let piranha = new Pistolet("compact", 10, "piranha", "pistolet-10.svg");
+    let shark = new Pistolet("medium", 10, "shark", "pistolet-violet-10.svg");
+    let wave = new Pistolet("ultra", 20, "wave", "pistolet-20.svg");
+    let tsunami = new Pistolet("double recharge", 50, "tsunami", "pistolet-50.svg");
 
     var tabPistolets = [piranha, shark, wave, tsunami];
 
     /*Création des joueurs*/
-    let joueur1 = new Joueur("joueur 1", "joueur1", "1", piranha, "joueur1");
-    let joueur2 = new Joueur("joueur 2", "joueur2", "2", shark, "joueur2");
+    let joueur1 = new Joueur("1", piranha, "perso1.svg");
+    let joueur2 = new Joueur("2", shark, "perso2.svg");
     joueur1.adversaire = joueur2;
     joueur2.adversaire = joueur1;
 
@@ -25,8 +25,8 @@ $(document).ready(function () {
     tsunami.positionArme();
 
     /*Positionnement des joueurs*/
-    joueur1.positionPerso(joueur2);
-    joueur2.positionPerso(joueur1);
+    joueur1.positionPerso();
+    joueur2.positionPerso();
 
 
     let tour = {

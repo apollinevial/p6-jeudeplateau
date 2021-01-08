@@ -1,6 +1,6 @@
 /*Création pistolets*/
 class Pistolet {
-    constructor(type, degat, nom, visuel) {
+    constructor(type, degat, nom, sourceVisuel) {
         this.type = type;
         this.degat = degat;
         this.position = {
@@ -8,7 +8,16 @@ class Pistolet {
             y: null
         }
         this.nom = nom;
-        this.visuel = $('#' + visuel);
+        this.sourceVisuel = sourceVisuel;
+        this.creationImage();
+        this.visuel = $('#' + this.nom);
+    }
+    
+    
+    creationImage() {
+        
+        $(`<img class="arme" id="${this.nom}" src="./img/${this.sourceVisuel}" alt="${this.degat} PTS">`).appendTo('.plateau');
+        
     }
 
     /*Placer armes*/
@@ -27,7 +36,8 @@ class Pistolet {
             $("#x" + a + "y" + b).append(this.visuel);
             this.position.x = a;
             this.position.y = b;
-            console.log(this.position);
+            console.log(this.visuel);
+            
         }
     }
 

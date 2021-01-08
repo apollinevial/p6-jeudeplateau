@@ -1,21 +1,31 @@
 /*objets javascript pour les joueurs*/
 class Joueur {
-    constructor(nom, identifiant, numero, pistolet, visuel, adversaire) {
-        this.nom = nom;
-        this.identifiant = identifiant;
+    constructor(numero, pistolet, sourceVisuel, adversaire) {
         this.numero = numero;
+        this.nom = "Joueur " + this.numero;
+        this.identifiant = "joueur" + this.numero;
         this.pistolet = pistolet;
         this.position = {
             x: null,
             y: null
         }
         this.points = 100;
-        this.visuel = $('#' + visuel);
+        this.sourceVisuel = sourceVisuel;
+        this.creationImage();
+        this.visuel = $('#' + this.identifiant);
         this.adversaire = adversaire;
+        this.defense = false;
     }
 
+    creationImage() {
+
+        $(`<img class="perso${this.numero} joueur${this.numero} joueur" id="joueur${this.numero}" src="./img/${this.sourceVisuel}" alt="perso1">`).appendTo('.plateau');
+
+    }
+
+
     /*Method placer joueurs sur la carte*/
-    positionPerso(adversaire) {
+    positionPerso() {
         let a = entierAleatoire(1, 10);
         let b = entierAleatoire(1, 10);
         let dessus = b - 1;
@@ -26,12 +36,12 @@ class Joueur {
         /*Si la case sélectionnée aléatoirement est grise ou contient une arme ou que les 4 cases autour contiennent l'autre personnage on rejoue la fonction*/
         if ($("#x" + a + "y" + b).hasClass("grise") ||
             $("#x" + a + "y" + b).children().hasClass("arme") ||
-            $("#x" + a + "y" + b).children().hasClass(adversaire.identifiant) ||
-            $("#x" + a + "y" + dessus).children().hasClass(adversaire.identifiant) ||
-            $("#x" + gauche + "y" + b).children().hasClass(adversaire.identifiant) ||
-            $("#x" + a + "y" + dessous).children().hasClass(adversaire.identifiant) ||
-            $("#x" + droite + "y" + b).children().hasClass(adversaire.identifiant)) {
-            this.positionPerso(adversaire);
+            $("#x" + a + "y" + b).children().hasClass(this.adversaire.identifiant) ||
+            $("#x" + a + "y" + dessus).children().hasClass(this.adversaire.identifiant) ||
+            $("#x" + gauche + "y" + b).children().hasClass(this.adversaire.identifiant) ||
+            $("#x" + a + "y" + dessous).children().hasClass(this.adversaire.identifiant) ||
+            $("#x" + droite + "y" + b).children().hasClass(this.adversaire.identifiant)) {
+            this.positionPerso();
         } else
         /*Sinon on déplace l'image de l'arme 1 dans la case et on lui donne une position*/
         {
@@ -81,10 +91,13 @@ class Joueur {
     }
 
 
-    afficherBoutons() {
-        $('<button></button>').appendTo('.partie-j' + this.numero).addClass('boutons-combat-j' + this.numero);
+    combat() {
+        $('<div></div>').appendTo('.partie-j' + this.numero).addClass('boutons-combat-j' + this.numero);
         $('<button>Attaquer</button>').appendTo('.boutons-combat-j' + this.numero).addClass('attaque');
         $('<button>Défendre</button>').appendTo('.boutons-combat-j' + this.numero).addClass('defense');
+        
+        this.attaquer();
+        this.defendre();
     }
 
 
@@ -113,6 +126,11 @@ class Joueur {
             /*Changement position pistolet*/
             this.pistolet.position.x += deplacementHorizontal;
             this.pistolet.position.y += deplacementVertical;
+            
+            console.log(this.position.x);
+            console.log(this.position.y);
+            console.log(this.pistolet.position.x);
+            console.log(this.pistolet.position.y);
 
             /*Déplacement des visuels*/
             $(this.visuel).appendTo("#x" + this.position.x + "y" + this.position.y);
@@ -134,7 +152,7 @@ class Joueur {
                     alert("Combattez");
                 }, 800);
 
-                this.combat(tour);
+                this.combat();
             }
 
 
@@ -142,47 +160,46 @@ class Joueur {
             tour.iteration++;
             alert("Cette case est inaccessible");
         }
-
     }
 
 
+    attaquer() {
 
-    combat(tour) {
-
-        for (var iterationCombat=1; iterationCombat == 1 ; iterationCombat--) {
-
-            this.afficherBoutons()
-
-            $(".boutons-combat-j" + this.numero + " .attaque").click(() => {
+        $(".boutons-combat-j" + this.numero + " .attaque").click(() => {
+            if (this.adversaire.defense == true) {
+                var Defense = this.pistolet.degat / 2;
+                this.adversaire.points -= Defense;
+                console.log(Defense);
+                this.adversaire.defense = false;
+            } else {
                 this.adversaire.points -= this.pistolet.degat;
-                this.adversaire.display();
-                tour.joueur = this.adversaire;
-                console.log(tour.joueur);
-                
-                if (this.points == 0 || this.adversaire.points == 0)
-                    alert("stop");
-                else {
-                    this.combat(tour);
-                }
-                
-            });
+            }
+            this.adversaire.display();
+            
+            if (this.points == 0 || this.adversaire.points == 0)
+                alert("stop");
+            else {
+                $(".boutons-combat-j"+ this.numero).remove();
+                this.adversaire.combat();
+            }
+        });
+    }
 
-            $(".boutons-combat-j" + this.numero + " .defense").click(() => {
-                this.adversaire.pistolet.degat / 2;
-                tour.joueur = this.adversaire;
-                
-                if (this.points == 0 || this.adversaire.points == 0)
-                    alert("stop");
-                else {
-                    this.combat(tour);
-                }
-                
-            });
 
-            console.log(this.points);
-            console.log(this.adversaire.points);
+    defendre() {
 
-        } 
+        $(".boutons-combat-j" + this.numero + " .defense").click(() => {
+            this.defense = true;
+            console.log(this.defense);
+
+            if (this.points == 0 || this.adversaire.points == 0)
+                alert("stop");
+            else {
+                $(".boutons-combat-j"+ this.numero).remove();
+                this.adversaire.combat();
+            }
+
+        });
 
     }
 
