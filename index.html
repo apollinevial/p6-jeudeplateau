@@ -10,26 +10,12 @@
 <body>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-12 text-center">
-                <h1>Jeu de plateau</h1>
-                <p class="tour">Nombre de déplacements : </p>
+
+            <div class="partie-j1 col-2 joueur-actif">
+                <h2>Joueur 1</h2>
             </div>
 
-            <div class="colonne partie-j1 col-2 joueur-actif">
-                <h2>Joueur 1</h2>
-                <ul>
-                    <li class="visuel-arme-j1"></li>
-                    <li class="nom-arme-j1"></li>
-                    <li class="degats-arme-j1"></li>
-                    <li class="points-j1"></li>
-                </ul>
-                <button class="boutonarret btn-j1" type="button">
-                    terminé
-                </button>
-                <div class="boutons-combat-j1">
-                </div>
-            </div>
-            <div class="col-8 m-auto">
+            <div class="col-8 m-auto plateau">
                 <img class="perso1 joueur" id="joueur1" src="img/perso1.svg" alt="perso1">
                 <img class="perso2 joueur" id="joueur2" src="img/perso2.svg" alt="perso2">
                 <img class="pistolet10 pistolet1 arme" id="piranha" src="img/pistolet-10.svg" alt="10 PTS">
@@ -42,20 +28,10 @@
 
             </div>
 
-            <div class="colonne partie-j2 col-2 joueur-attente">
-                <h2>Joueur 2</h2>
-                <ul>
-                    <li class="visuel-arme-j2"></li>
-                    <li class="nom-arme-j2"></li>
-                    <li class="degats-arme-j2"></li>
-                    <li class="points-j2"></li>
-                </ul>
-                <button class="boutonarret btn-j2" type="button">
-                    terminé
-                </button>    
-                <div class="boutons-combat-j2">
-                </div>
+            <div class="partie-j2 col-2 joueur-attente">
+                <h2>Joueur 2</h2> 
             </div>
+
         </div>
     </div>
 

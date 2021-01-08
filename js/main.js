@@ -10,7 +10,9 @@ $(document).ready(function () {
 
     /*Création des joueurs*/
     let joueur1 = new Joueur("joueur 1", "joueur1", "1", piranha, "joueur1");
-    let joueur2 = new Joueur("joueur 2", "joueur1", "2", shark, "joueur2");
+    let joueur2 = new Joueur("joueur 2", "joueur2", "2", shark, "joueur2");
+    joueur1.adversaire = joueur2;
+    joueur2.adversaire = joueur1;
 
     var tabJoueurs = [joueur1, joueur2];
 

@@ -54,7 +54,18 @@ class Board {
 
     displayPlayers(tabJoueurs) {
 
+        $('<div></div>').prependTo('.row').addClass('col-12 text-center');
+        $('<h1>Jeu de plateau</div>').appendTo('.col-12');
+        $('<p>Nombre de déplacements : </p>').appendTo('.col-12').addClass('tour');
+
         for (const tabJoueur of tabJoueurs) {
+
+            $('<ul></ul>').appendTo('.partie-j' + tabJoueur.numero).addClass('liste-j' + tabJoueur.numero);
+            $('<li></li>').appendTo('.liste-j' + tabJoueur.numero).addClass('visuel-arme-j' + tabJoueur.numero);
+            $('<li></li>').appendTo('.liste-j' + tabJoueur.numero).addClass('nom-arme-j' + tabJoueur.numero);
+            $('<li></li>').appendTo('.liste-j' + tabJoueur.numero).addClass('degats-arme-j' + tabJoueur.numero);
+            $('<li></li>').appendTo('.liste-j' + tabJoueur.numero).addClass('points-j' + tabJoueur.numero);
+            $('<button>Terminé</button>').appendTo('.partie-j' + tabJoueur.numero).addClass('boutonarret btn-j' + tabJoueur.numero);
 
             tabJoueur.display();
         }

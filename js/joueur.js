@@ -1,6 +1,6 @@
 /*objets javascript pour les joueurs*/
 class Joueur {
-    constructor(nom, identifiant, numero, pistolet, visuel) {
+    constructor(nom, identifiant, numero, pistolet, visuel, adversaire) {
         this.nom = nom;
         this.identifiant = identifiant;
         this.numero = numero;
@@ -11,6 +11,7 @@ class Joueur {
         }
         this.points = 100;
         this.visuel = $('#' + visuel);
+        this.adversaire = adversaire;
     }
 
     /*Method placer joueurs sur la carte*/
@@ -81,7 +82,7 @@ class Joueur {
 
 
     afficherBoutons() {
-
+        $('<button></button>').appendTo('.partie-j' + this.numero).addClass('boutons-combat-j' + this.numero);
         $('<button>Attaquer</button>').appendTo('.boutons-combat-j' + this.numero).addClass('attaque');
         $('<button>Défendre</button>').appendTo('.boutons-combat-j' + this.numero).addClass('defense');
     }
@@ -93,7 +94,7 @@ class Joueur {
         $(".visuel-arme-j" + this.numero).empty();
         $(this.visuel).clone().appendTo('.visuel-arme-j' + this.numero);
         $(this.pistolet.visuel).clone().appendTo('.visuel-arme-j' + this.numero);
-        $(".nom-arme-j" + +this.numero).html("Nom arme : " + this.pistolet.nom);
+        $(".nom-arme-j" + this.numero).html("Nom arme : " + this.pistolet.nom);
         $(".degats-arme-j" + this.numero).html("Dégats arme : " + this.pistolet.degat);
         $(".points-j" + this.numero).html("Nombre de points : " + this.points);
 
@@ -131,21 +132,9 @@ class Joueur {
             if (this.verifPosition(tour.adversaire)) {
                 setTimeout(() => {
                     alert("Combattez");
-                    console.log(this);
                 }, 800);
-                tour.combat == true;
-                this.afficherBoutons()
-                tour.adversaire.afficherBoutons()
 
-                $(".boutons-combat-j" + this.numero + " .attaque").click(() => {
-                    tour.adversaire.points -= this.pistolet.degat;
-                    tour.adversaire.display();
-                });
-                
-                $(".boutons-combat-j" + this.numero + " .defense").click(() => {
-                    tour.adversaire.pistolet.degat / 2;
-                });
-
+                this.combat(tour);
             }
 
 
@@ -155,4 +144,46 @@ class Joueur {
         }
 
     }
+
+
+
+    combat(tour) {
+
+        for (var iterationCombat=1; iterationCombat == 1 ; iterationCombat--) {
+
+            this.afficherBoutons()
+
+            $(".boutons-combat-j" + this.numero + " .attaque").click(() => {
+                this.adversaire.points -= this.pistolet.degat;
+                this.adversaire.display();
+                tour.joueur = this.adversaire;
+                console.log(tour.joueur);
+                
+                if (this.points == 0 || this.adversaire.points == 0)
+                    alert("stop");
+                else {
+                    this.combat(tour);
+                }
+                
+            });
+
+            $(".boutons-combat-j" + this.numero + " .defense").click(() => {
+                this.adversaire.pistolet.degat / 2;
+                tour.joueur = this.adversaire;
+                
+                if (this.points == 0 || this.adversaire.points == 0)
+                    alert("stop");
+                else {
+                    this.combat(tour);
+                }
+                
+            });
+
+            console.log(this.points);
+            console.log(this.adversaire.points);
+
+        } 
+
+    }
+
 }
