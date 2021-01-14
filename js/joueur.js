@@ -95,7 +95,6 @@ class Joueur {
         $('<div></div>').appendTo('.partie-j' + this.numero).addClass('boutons-combat-j' + this.numero);
         $('<button>Attaquer</button>').appendTo('.boutons-combat-j' + this.numero).addClass('attaque');
         $('<button>Défendre</button>').appendTo('.boutons-combat-j' + this.numero).addClass('defense');
-        
         this.attaquer();
         this.defendre();
     }
@@ -134,7 +133,7 @@ class Joueur {
 
             /*Déplacement des visuels*/
             $(this.visuel).appendTo("#x" + this.position.x + "y" + this.position.y);
-            $(this.pistolet.visuel).appendTo("#x" + this.position.x + "y" + this.position.y);
+            $(this.pistolet.visuel).appendTo("#x" + this.pistolet.position.x + "y" + this.pistolet.position.y);
 
             /*Si une arme est présente dans la nouvelle case on procède à l'échange*/
             for (const tabPistolet of tabPistolets) {
@@ -151,7 +150,11 @@ class Joueur {
                 setTimeout(() => {
                     alert("Combattez");
                 }, 800);
-
+                
+                /*déplacement bloqué*/
+                $(document).off('keydown');
+                console.log('keydown');
+                
                 this.combat();
             }
 
