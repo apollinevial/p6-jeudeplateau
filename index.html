@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <title>Jeu de plateau</title>
+    <link rel="stylesheet" href="https://use.typekit.net/qbu4xzu.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
 </head>
@@ -11,17 +13,26 @@
     <div class="container-fluid">
         <div class="row">
 
-            <div class="partie-j1 col-2 joueur-actif">
+            <div class="partie-j1 col-3 joueur-actif">
             </div>
 
-            <div class="col-8 m-auto plateau">
-                
+            <div class="col-6 m-auto plateau">
+
                 <table class="map m-auto">
                 </table>
 
             </div>
 
-            <div class="partie-j2 col-2 joueur-attente">
+            <div class="partie-j2 col-3 joueur-attente">
+            </div>
+
+
+
+            <div class="combat-popup alert alert-success alert-dismissible fade show" role="alert">
+                    <button type="button" class="ok">
+                        C'est parti
+                    </button>
+
             </div>
 
         </div>
@@ -34,4 +45,5 @@
     <script src="js/board.js"></script>
     <script src="js/main.js"></script>
 </body>
+
 </html>

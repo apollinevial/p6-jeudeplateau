@@ -92,9 +92,10 @@ class Joueur {
 
 
     combat() {
+        $('.boutonarret').css("display", "none");
         $('<div></div>').appendTo('.partie-j' + this.numero).addClass('boutons-combat-j' + this.numero);
         $('<button>Attaquer</button>').appendTo('.boutons-combat-j' + this.numero).addClass('attaque');
-        $('<button>Défendre</button>').appendTo('.boutons-combat-j' + this.numero).addClass('defense');
+        $('<button>Défendre (-50%)</button>').appendTo('.boutons-combat-j' + this.numero).addClass('defense');
         this.attaquer();
         this.defendre();
     }
@@ -125,11 +126,6 @@ class Joueur {
             /*Changement position pistolet*/
             this.pistolet.position.x += deplacementHorizontal;
             this.pistolet.position.y += deplacementVertical;
-            
-            console.log(this.position.x);
-            console.log(this.position.y);
-            console.log(this.pistolet.position.x);
-            console.log(this.pistolet.position.y);
 
             /*Déplacement des visuels*/
             $(this.visuel).appendTo("#x" + this.position.x + "y" + this.position.y);
@@ -147,14 +143,18 @@ class Joueur {
             }
 
             if (this.verifPosition(tour.adversaire)) {
-                setTimeout(() => {
+                /*setTimeout(() => {
                     alert("Combattez");
-                }, 800);
+                }, 800);*/
                 
                 /*déplacement bloqué*/
                 $(document).off('keydown');
                 console.log('keydown');
                 
+                $('.combat-popup').css("display", "block");
+                $(".ok").click(function () {
+                    $('.combat-popup').css("display", "none");
+                });
                 this.combat();
             }
 
@@ -179,9 +179,9 @@ class Joueur {
             }
             this.adversaire.display();
             
-            if (this.points == 0 || this.adversaire.points == 0)
-                alert("stop");
-            else {
+            if (this.points <= 0 || this.adversaire.points <= 0) {
+                alert("Le " + this.adversaire.nom + " a perdu");
+            } else {
                 $(".boutons-combat-j"+ this.numero).remove();
                 this.adversaire.combat();
             }
@@ -195,9 +195,10 @@ class Joueur {
             this.defense = true;
             console.log(this.defense);
 
-            if (this.points == 0 || this.adversaire.points == 0)
+            if (this.points <= 0 || this.adversaire.points <= 0) {
+                console.log(this.points);
                 alert("stop");
-            else {
+            } else {
                 $(".boutons-combat-j"+ this.numero).remove();
                 this.adversaire.combat();
             }

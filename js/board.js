@@ -45,7 +45,7 @@ class Board {
             } else {
 
                 /*Si la case désignée n'est pas déjà grise on passe la case en gris et on incrémente i */
-                $("#x" + a + "y" + b).css("background-color", "grey").addClass("grise");
+                $("#x" + a + "y" + b).css("background-color", "#00BCD4").addClass("grise");
                 i++;
             }
         }
@@ -55,49 +55,50 @@ class Board {
     displayPlayers(tabJoueurs) {
 
         $('<div></div>').prependTo('.row').addClass('col-12 text-center');
-        $('<h1>Jeu de plateau</div>').appendTo('.col-12');
-        $('<p>Nombre de déplacements : </p>').appendTo('.col-12').addClass('tour');
+        $('<h1>Bataille d’eau</div>').appendTo('.col-12');
+        $('<p class="regles">Chacun votre tour déplacez-vous <strong>d’une à trois cases</strong> en contournant les obstacles.<br>Vous pouvez <strong>changer de pistolet</strong> en passant sur une case contenant un pistolet.<br> Si vous vous croisez sur des cases adjacentes, un <strong>combat</strong> s’engage.</p>').appendTo('.col-12');
+            $('<p>Nombre de déplacements : </p>').appendTo('.col-12').addClass('tour');
 
-        for (const tabJoueur of tabJoueurs) {
-            
-            $(`<h2>${tabJoueur.nom}</h2>`).appendTo('.partie-j' + tabJoueur.numero);
-            $('<ul></ul>').appendTo('.partie-j' + tabJoueur.numero).addClass('liste-j' + tabJoueur.numero);
-            $('<li></li>').appendTo('.liste-j' + tabJoueur.numero).addClass('visuel-arme-j' + tabJoueur.numero);
-            $('<li></li>').appendTo('.liste-j' + tabJoueur.numero).addClass('nom-arme-j' + tabJoueur.numero);
-            $('<li></li>').appendTo('.liste-j' + tabJoueur.numero).addClass('degats-arme-j' + tabJoueur.numero);
-            $('<li></li>').appendTo('.liste-j' + tabJoueur.numero).addClass('points-j' + tabJoueur.numero);
-            $('<button>Terminé</button>').appendTo('.partie-j' + tabJoueur.numero).addClass('boutonarret btn-j' + tabJoueur.numero);
+            for (const tabJoueur of tabJoueurs) {
 
-            tabJoueur.display();
+                $(`<h2>${tabJoueur.nom}</h2>`).appendTo('.partie-j' + tabJoueur.numero);
+                $('<ul></ul>').appendTo('.partie-j' + tabJoueur.numero).addClass('liste-j' + tabJoueur.numero);
+                $('<li></li>').appendTo('.liste-j' + tabJoueur.numero).addClass('visuel-arme-j' + tabJoueur.numero);
+                $('<li></li>').appendTo('.liste-j' + tabJoueur.numero).addClass('nom-arme-j' + tabJoueur.numero);
+                $('<li></li>').appendTo('.liste-j' + tabJoueur.numero).addClass('degats-arme-j' + tabJoueur.numero);
+                $('<li></li>').appendTo('.liste-j' + tabJoueur.numero).addClass('points-j' + tabJoueur.numero);
+                $('<button>Terminer mon tour</button>').appendTo('.partie-j' + tabJoueur.numero).addClass('boutonarret btn-j' + tabJoueur.numero);
+
+                tabJoueur.display();
+            }
+
         }
 
-    }
+        /*Method déplacer joueurs*/
+        deplacement(e, tour, tabPistolets) {
 
-    /*Method déplacer joueurs*/
-    deplacement(e, tour, tabPistolets) {
+            let intKeyCode = e.which || e.keyCode; // le code est compatible tous navigateurs grâce à ces deux propriétés
 
-        let intKeyCode = e.which || e.keyCode; // le code est compatible tous navigateurs grâce à ces deux propriétés
+            switch (intKeyCode) {
+                case 37:
 
-        switch (intKeyCode) {
-            case 37:
+                    tour.joueur.move(tour, tabPistolets, -1, 0);
+                    break;
+                case 38:
 
-                tour.joueur.move(tour, tabPistolets, -1, 0);
-                break;
-            case 38:
+                    tour.joueur.move(tour, tabPistolets, 0, -1);
+                    break;
+                case 39:
 
-                tour.joueur.move(tour, tabPistolets, 0, -1);
-                break;
-            case 39:
+                    tour.joueur.move(tour, tabPistolets, 1, 0);
+                    break;
+                case 40:
 
-                tour.joueur.move(tour, tabPistolets, 1, 0);
-                break;
-            case 40:
+                    tour.joueur.move(tour, tabPistolets, 0, 1);
+                    break;
+            }
 
-                tour.joueur.move(tour, tabPistolets, 0, 1);
-                break;
         }
 
+
     }
-
-
-}

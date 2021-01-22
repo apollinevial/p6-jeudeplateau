@@ -1,15 +1,39 @@
-/*table {
-    width: 1000px !important;
-    height: 1000px;
-    margin: 100px auto;
-}*/
+* {
+    font-size: 15px;
+    font-family: agenda, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
 
+button:focus, 
+button:active {
+    outline: none !important;
+}
+h1 {
+    font-family: kapelka-new, script;
+    font-weight: 400;
+    font-style: normal;
+    color: #00BCD4;
+    margin: 15px 0 !important;
+}
 
+h2 {
+    margin-bottom: 30px !important;
+    font-weight: 700 !important;
+}
+
+.regles, .tour {
+    font-size: 15px;
+    font-family: agenda, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    margin-bottom: 20px;
+}
 
 td {
     border: 1px solid black;
-    width: 80px;
-    height: 80px;
+    width: 70px;
+    height: 70px;
     position: relative;
     background-color: transparent;
 }
@@ -23,10 +47,15 @@ td img {
 }
 
 
-.perso1, .perso2 {
+.perso1,
+.perso2 {
     z-index: -1;
 }
 
+ul {
+        list-style: none;
+    padding: 0;
+}
 
 img {
     height: 60px;
@@ -34,15 +63,87 @@ img {
 }
 
 .joueur-actif {
-    border: 2px solid #EA524E;
+    background-color: #EDEDED;
 }
 
-.joueur-actif button {
+.col-3 {
+    text-align: center;
+padding: 30px;
+    border-right: 30px solid white;
+    border-left: 30px solid white;
+}
+
+
+.joueur-actif .boutonarret {
     background-color: #EA524E;
 }
 
-.joueur-attente button {
-    background-color: white;
+.boutonarret {
+    background-color: rgb(0, 188, 212) !important;
+    padding: 13px 25px 20px;
+    border: none;
+    margin-right: 5px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: white;
 }
 
+.joueur-attente .boutonarret {
+    display: none;
+}
 
+.attaque {
+    background-color: #EA524F !important;
+    padding: 13px 25px 20px;
+    border: none;
+    margin-right: 5px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: white;
+    display: block;
+    margin: auto;
+    width: 60%;
+    margin-bottom: 10px;
+}
+
+.defense {
+    background-color: #FFBF3F !important;
+    padding: 13px 25px 20px;
+    border: none;
+    margin-left: 5px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: white;
+    display: block;
+    margin: auto;
+    width: 60%;
+}
+
+.combat-popup {
+    display: none;
+    width: 100vw !important;
+    height: 100vh !important;
+    background-color: #0000007a !important;
+    background-image: url(../img/splash2.png);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute !important;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.ok {
+    position: absolute;
+    top: 65%;
+    left: 51%;
+    transform: translate(-50%, -50%);
+    background-color: #EA524F !important;
+    padding: 5px 20px 15px;
+    border: none;
+    margin-right: 5px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: white;
+}
